@@ -1,0 +1,35 @@
+*{
+    border: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+.container{
+    max-width: 600px;
+    margin:20px auto;
+    padding: 10px;
+}
+.title{
+    line-height: 3em;
+}
+.tabs{
+    display: flex;
+    margin-bottom:20px;
+}
+.tab-title{
+    margin-right: 20px;
+    cursor: pointer;
+    padding-bottom: 4px;
+}
+.tab-title.active{
+    color: #409eff;
+    border-bottom: 2px solid #409eff;
+}
+.contents{
+
+}
+.tab-content{
+    display: none;
+}
+.tab-content.active{
+    display: block;
+}
