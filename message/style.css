@@ -6,34 +6,31 @@
 .container{
     max-width: 600px;
     margin:20px auto;
+    padding:20px;
 }
-.panel{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #d9d9d9;
-    border-radius: 5px;
-    margin-top:20px;
+.title{
+    margin-bottom: 20px;
 }
-.item{
-    border-top: 1px solid #d9d9d9;
-}
-.item:first-child{
-    border-top: 0px;
-}
-.header{
-    background-color: #fafafa;
-    padding: 15px;
-    cursor: pointer;
-    
-}
-.content{
-    height: 0px;
+.btn{
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 4px;
     background: white;
-    overflow: hidden;
-    transition: all 0.2s;
-    padding: 0 15px;
+    border: 1px solid  rgb(217, 217, 217);
+
 }
-.active>.content{
-    height: initial;
-    padding: 15px;
+.message{
+    position: fixed;
+    top:0px;
+    left:50%;
+    transform: translate(-50%,-50px);
+    padding: 10px 16px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px #ddd;
+    transition: all 0.3s;
+}
+.message.active{
+    transform: translate(-50%,20px);
+   
 }
