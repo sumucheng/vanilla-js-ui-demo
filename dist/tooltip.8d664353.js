@@ -117,79 +117,65 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"tooltip.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Tooltip =
+/*#__PURE__*/
+function () {
+  function Tooltip($btn) {
+    _classCallCheck(this, Tooltip);
+
+    this.$btn = $btn;
+    this.$btn.tooltip = this;
+    this.align = $btn.dataset.align;
+    this.text = $btn.dataset.text;
+    this.render();
+    this.$btn.show = this.show.bind(this);
+    this.$btn.hide = this.hide.bind(this);
+    this.show();
   }
 
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
+  _createClass(Tooltip, [{
+    key: "render",
+    value: function render() {
+      this.$div = document.createElement('div');
+      this.$div.innerText = this.text;
+      this.$div.classList.add(this.align, 'tooltip');
+      this.$btn.appendChild(this.$div);
     }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
+  }, {
+    key: "show",
+    value: function show() {
+      this.$div.classList.add('active');
     }
+  }, {
+    key: "hide",
+    value: function hide() {
+      this.$div.classList.remove('active');
+    }
+  }]);
 
-    cssTimeout = null;
-  }, 50);
-}
+  return Tooltip;
+}();
 
-module.exports = reloadCSS;
-},{"./bundle-url":"C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js"}],"style.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js"}],"C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+document.querySelectorAll('.btn').forEach(function (btn) {
+  btn.addEventListener('mouseenter', function () {
+    if (btn.tooltip) {
+      btn.show();
+    } else {
+      new Tooltip(btn);
+    }
+  });
+  btn.addEventListener('mouseleave', function () {
+    btn.hide();
+  });
+});
+},{}],"C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -393,5 +379,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.e308ff8e.js.map
+},{}]},{},["C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","tooltip.js"], null)
+//# sourceMappingURL=/tooltip.8d664353.js.map
