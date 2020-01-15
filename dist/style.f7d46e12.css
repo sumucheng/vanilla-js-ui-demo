@@ -1,4 +1,4 @@
-.message{
+.msg{
     position: fixed;
     top:0px;
     left:50%;
@@ -9,7 +9,7 @@
     box-shadow: 0 4px 12px #ddd;
     transition: all 0.3s;
 }
-.message.active{
+.msg.active{
     transform: translate(-50%,20px);
    
 }

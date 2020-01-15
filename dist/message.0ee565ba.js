@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"message.js":[function(require,module,exports) {
+})({"message/message.js":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -145,7 +145,7 @@ function () {
     key: "render",
     value: function render() {
       this.$msg = document.createElement('div');
-      this.$msg.classList.add('message');
+      this.$msg.classList.add('msg');
       this.$msg.innerText = this.text;
       document.body.appendChild(this.$msg);
     }
@@ -204,7 +204,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59447" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63282" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -380,5 +380,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","message.js"], null)
+},{}]},{},["C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","message/message.js"], null)
 //# sourceMappingURL=/message.0ee565ba.js.map

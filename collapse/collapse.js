@@ -21,8 +21,7 @@ class Collapse {
         })
     }
 }
-new Collapse(document.querySelectorAll('.container')[0], true)
-new Collapse(document.querySelectorAll('.container')[1])
+new Collapse(document.querySelector('.container'), true)
 
 function off(el) {
     el.classList.remove('active')

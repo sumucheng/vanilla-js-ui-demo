@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"collapse.js":[function(require,module,exports) {
+})({"collapse/collapse.js":[function(require,module,exports) {
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -172,8 +172,7 @@ function () {
   return Collapse;
 }();
 
-new Collapse(document.querySelectorAll('.container')[0], true);
-new Collapse(document.querySelectorAll('.container')[1]);
+new Collapse(document.querySelector('.container'), true);
 
 function off(el) {
   el.classList.remove('active');
@@ -218,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59447" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63282" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -394,5 +393,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","collapse.js"], null)
+},{}]},{},["C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","collapse/collapse.js"], null)
 //# sourceMappingURL=/collapse.0a5340dd.js.map

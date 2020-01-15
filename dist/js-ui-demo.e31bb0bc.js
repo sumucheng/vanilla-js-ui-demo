@@ -117,9 +117,75 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"index.js":[function(require,module,exports) {
+})({"menu.js":[function(require,module,exports) {
+"use strict";
 
-},{}],"C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Menu =
+/*#__PURE__*/
+function () {
+  function Menu(item) {
+    _classCallCheck(this, Menu);
+
+    this.item = item;
+    this.render(); // this.items = ['collapse', 'message', 'tab', 'tooltip', 'modal']
+    // this.items.splice(this.items.indexOf(item), 1)
+  }
+
+  _createClass(Menu, [{
+    key: "render",
+    value: function render() {
+      this.$Menu = document.createElement('div');
+      this.$Menu.innerHTML = "\n            <div class=\"nav-container\">\n                <ul class=\"nav\">\n                    <li class=\"nav-item collapse\"><a href=\"./collapse/collapse.html\">collapse</a></li>\n                    <li class=\"nav-item message\"><a href=\"./message/message.html\">message</a></li>\n                    <li class=\"nav-item tab\"><a href=\"./tab/tab.html\">tab</a></li>\n                    <li class=\"nav-item tooltip\"><a href=\"./tooltip/tooltip.html\">tooltip</a></li>\n                    <li class=\"nav-item modal\"><a href=\"./modal/modal.html\">modal</a></li>\n                </ul>\n            </div>";
+      document.body.appendChild(this.$Menu);
+    }
+  }, {
+    key: "active",
+    value: function active() {
+      var _this = this;
+
+      console.log(1);
+      var $ul = document.querySelectorAll('.nav-item');
+
+      if (this.item) {
+        Array.from($ul).forEach(function (li) {
+          console.log(li);
+
+          if (li.classList.contains(_this.item)) {
+            li.classList.add('active');
+            var newA = document.createElement('a');
+            newA.innerText = _this.item;
+            li.firstChild.replaceWith(newA);
+          }
+        });
+      }
+    }
+  }]);
+
+  return Menu;
+}();
+
+var _default = Menu;
+exports.default = _default;
+},{}],"index.js":[function(require,module,exports) {
+"use strict";
+
+var _menu = _interopRequireDefault(require("./menu.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+new _menu.default();
+},{"./menu.js":"menu.js"}],"C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -147,7 +213,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59447" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63282" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

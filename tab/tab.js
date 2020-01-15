@@ -17,4 +17,5 @@ class Tab {
         })
     }
 }
+
 document.querySelectorAll('.container').forEach(container => new Tab(container))

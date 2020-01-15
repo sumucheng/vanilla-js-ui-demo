@@ -117,78 +117,87 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"collapse.js":[function(require,module,exports) {
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
+})({"modal/modal.js":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Collapse =
+var Modal =
 /*#__PURE__*/
 function () {
-  function Collapse($container) {
-    var isAccordion = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  function Modal($root, options) {
+    _classCallCheck(this, Modal);
 
-    _classCallCheck(this, Collapse);
+    this.$root = $root;
 
-    this.$panel = $container.querySelector('.panel');
-    this.$item = $container.querySelectorAll('.item');
-    this.isAccordion = isAccordion;
+    this.handleClose = options.handleClose || function () {};
+
+    this.handleCancel = options.handleCancel || function () {};
+
+    this.handleOk = options.handleOk || function () {};
+
     this.bind();
   }
 
-  _createClass(Collapse, [{
+  _createClass(Modal, [{
     key: "bind",
     value: function bind() {
       var _this = this;
 
-      this.$panel.addEventListener('click', function (e) {
-        var item = e.target.parentElement;
+      this.$root.querySelector('.close').addEventListener('click', function () {
+        _this.hide();
 
-        if (hasClass(e.target, 'header')) {
-          if (!_this.isAccordion) toggle(item);else {
-            if (hasClass(item, 'active')) off(item);else {
-              _this.$item.forEach(function (i) {
-                return off(i);
-              });
-
-              on(item);
-            }
-          }
-        }
+        _this.handleClose();
       });
+      this.$root.querySelector('.cancel').addEventListener('click', function () {
+        _this.hide();
+
+        _this.handleCancel();
+      });
+      this.$root.querySelector('.ok').addEventListener('click', function () {
+        _this.hide();
+
+        _this.handleOk();
+      });
+    }
+  }, {
+    key: "hide",
+    value: function hide() {
+      var _this2 = this;
+
+      this.$root.classList.remove('show');
+      setTimeout(function () {
+        _this2.$root.classList.remove('active');
+      }, 200);
+      background.classList.remove('active');
     }
   }]);
 
-  return Collapse;
+  return Modal;
 }();
 
-new Collapse(document.querySelectorAll('.container')[0], true);
-new Collapse(document.querySelectorAll('.container')[1]);
+var dialog = document.querySelector('.dialog');
+var background = document.querySelector('.background');
+var modal = new Modal(dialog, {
+  handleCancel: handleCancel,
+  handleOk: handleOk
+});
+document.querySelector('.modal-open').addEventListener('click', function () {
+  dialog.classList.add('active');
+  background.classList.add('active');
+  setTimeout(function () {
+    dialog.classList.add('show');
+  }, 0);
+});
 
-function off(el) {
-  el.classList.remove('active');
+function handleCancel() {
+  console.log('cancel');
 }
 
-function on(el) {
-  el.classList.add('active');
-}
-
-function toggle(el) {
-  el.classList.toggle('active');
-}
-
-function hasClass(el, className) {
-  return _toConsumableArray(el.classList).indexOf(className) >= 0;
+function handleOk() {
+  console.log('ok');
 }
 },{}],"C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -218,7 +227,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54728" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63282" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -394,5 +403,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","collapse.js"], null)
-//# sourceMappingURL=/collapse.5526c7e7.js.map
+},{}]},{},["C:/Users/kiki/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","modal/modal.js"], null)
+//# sourceMappingURL=/modal.15bed801.js.map

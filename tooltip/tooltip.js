@@ -8,12 +8,11 @@ class Tooltip {
         this.$btn.show = this.show.bind(this)
         this.$btn.hide = this.hide.bind(this)
         this.show()
-
     }
     render() {
         this.$div = document.createElement('div')
         this.$div.innerText = this.text
-        this.$div.classList.add(this.align, 'tooltip')
+        this.$div.classList.add(this.align, 'tip')
         this.$btn.appendChild(this.$div)
     }
     show() {

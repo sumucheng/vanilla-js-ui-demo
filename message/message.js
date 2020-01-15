@@ -7,7 +7,7 @@ class Message {
     }
     render() {
         this.$msg = document.createElement('div')
-        this.$msg.classList.add('message')
+        this.$msg.classList.add('msg')
         this.$msg.innerText = this.text
         document.body.appendChild(this.$msg)
     }

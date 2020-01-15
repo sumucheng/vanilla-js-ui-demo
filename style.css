@@ -1,3 +1,4 @@
+/* css init */
 *{
     margin: 0;
     padding: 0;
@@ -19,6 +20,15 @@ button:hover{
     color: #40a9ff;
     background-color: #fff;
     border-color: #40a9ff;
+    cursor: pointer;
+}
+button.ok{
+    background-color:#1890ff;
+    color:white;
+    border: #1890ff;
+}
+button.ok:hover{
+    background-color:#40a9ff;
 }
 a{
     color:#314659;
@@ -31,6 +41,7 @@ a:hover{
 ul,ol{
     list-style: none;
 }
+/* self css */
 .nav-container{
     position: fixed;
     top: 0px;
@@ -41,7 +52,7 @@ ul,ol{
 .nav{
     padding-top: 1em;
 }
-.nav .nav-item{
+.nav-item{
     padding-left: 40px;
     padding-bottom:1em;
     padding-top: 1em;
@@ -58,10 +69,10 @@ ul,ol{
 .nav-item.active a{
     color:#1890ff;
 }
+/* global css */
 .display{
     margin-left: 240px;
-    height: 100vh;
-
+    max-height: 100vh;
 }
 .container{
     max-width: 600px;
