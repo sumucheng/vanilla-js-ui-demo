@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.e308ff8e.css">
+    <style>.panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .collapse-panel {
+            border: 1px solid #d9d9d9;
+        }
+
+        .item {
+            border-top: 1px solid #d9d9d9;
+        }
+
+        .item:first-child {
+            border-top: 0px;
+        }
+
+        .header {
+            background-color: #fafafa;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .content {
+            height: 0px;
+            background: white;
+            overflow: hidden;
+            transition: all 0.2s;
+            padding: 0 15px;
+            border-top: 1px solid transparent;
+        }
+
+        .active>.content {
+            height: initial;
+            padding: 15px;
+            border-top: 1px solid #d9d9d9;
+        }</style>
+<script src="/message.js"></script></head>
+
+<body>
+    <div class="nav-container">
+        <ul class="nav">
+            <li class="nav-item collapse active"><a href="/component\collapse.html">collapse</a></li>
+            <li class="nav-item message"><a href="/component\message.html">message</a></li>
+            <li class="nav-item tab"><a href="/component\tab.html">tab</a></li>
+            <li class="nav-item tooltip"><a href="/component\tooltip.html">tooltip</a></li>
+            <li class="nav-item modal"><a href="/component\modal.html">modal</a></li>
+            <li class="nav-item carousel"><a href="/component\carousel.html">carousel</a></li>
+        </ul>
+    </div>
+    <div class="display">
+        <div class="container">
+            <h2 class="title">Collapse 折叠面板</h2>
+            <div class="panel">
+                <div class="collapse-panel">
+                    <div class="item active">
+                        <div class="header">选项一</div>
+                        <div class="content">选项一的内容</div>
+                    </div>
+                    <div class="item">
+                        <div class="header">选项二</div>
+                        <div class="content">选项二的内容</div>
+                    </div>
+                    <div class="item">
+                        <div class="header">选项三</div>
+                        <div class="content">选项三的内容</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Collapse =
+/*#__PURE__*/
+function () {
+  function Collapse($container) {
+    var isAccordion = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+    _classCallCheck(this, Collapse);
+
+    this.$panel = $container.querySelector('.panel');
+    this.$item = $container.querySelectorAll('.item');
+    this.isAccordion = isAccordion;
+    this.bind();
+  }
+
+  _createClass(Collapse, [{
+    key: "bind",
+    value: function bind() {
+      var _this = this;
+
+      this.$panel.addEventListener('click', function (e) {
+        var item = e.target.parentElement;
+
+        if (hasClass(e.target, 'header')) {
+          if (!_this.isAccordion) toggle(item);else {
+            if (hasClass(item, 'active')) off(item);else {
+              _this.$item.forEach(function (i) {
+                return off(i);
+              });
+
+              on(item);
+            }
+          }
+        }
+      });
+    }
+  }]);
+
+  return Collapse;
+}();
+
+new Collapse(document.querySelector('.container'), true);
+
+function off(el) {
+  el.classList.remove('active');
+}
+
+function on(el) {
+  el.classList.add('active');
+}
+
+function toggle(el) {
+  el.classList.toggle('active');
+}
+
+function hasClass(el, className) {
+  return _toConsumableArray(el.classList).indexOf(className) >= 0;
+}</script>
+
+</html>

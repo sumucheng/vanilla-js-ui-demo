@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .msg {
+            position: fixed;
+            top: 0px;
+            left: 50%;
+            transform: translate(-50%, -50px);
+            padding: 10px 16px;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px #ddd;
+            transition: all 0.3s;
+        }
+
+        .msg.active {
+            transform: translate(-50%, 20px);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-container">
+        <ul class="nav">
+            <li class="nav-item collapse"><a href="./collapse.html">collapse</a></li>
+            <li class="nav-item message active"><a href="./message.html">message</a></li>
+            <li class="nav-item tab"><a href="./tab.html">tab</a></li>
+            <li class="nav-item tooltip"><a href="./tooltip.html">tooltip</a></li>
+            <li class="nav-item modal"><a href="./modal.html">modal</a></li>
+            <li class="nav-item carousel"><a href="./carousel.html">carousel</a></li>
+        </ul>
+    </div>
+    <div class="display">
+        <div class="container">
+            <h2 class="title">Message 全局提示</h2>
+            <div class="panel">
+                <button class='success btn'>success</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    class Message {
+        constructor({ type = 'success', text = '' }) {
+            this.type = type
+            this.text = text
+            this.render()
+            this.bind()
+        }
+        render() {
+            this.$msg = document.createElement('div')
+            this.$msg.classList.add('msg')
+            this.$msg.innerText = this.text
+            document.body.appendChild(this.$msg)
+        }
+        bind() {
+            setTimeout(() => this.$msg.classList.add('active'), 100)
+            setTimeout(() => {
+                this.$msg.classList.remove('active')
+                setTimeout(() => {
+                    this.$msg.parentNode.removeChild(this.$msg)
+                }, 1000);
+
+            }, 3000)
+        }
+    }
+
+    document
+        .querySelector('.success')
+        .addEventListener('click', () => new Message({ type: 'success', text: 'This is a success message' }))
+
+
+</script>
+
+</html>

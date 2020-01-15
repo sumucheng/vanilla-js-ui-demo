@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.e308ff8e.css">
+    <style>.panel {
+            display: flex;
+            justify-content: center;
+        }
+
+        .row1,
+        .row3,
+        .row2>.col2 {
+            margin-left: 50px;
+        }
+
+        .row1,
+        .row2 {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            position: relative;
+        }
+
+        .tip {
+            cursor: initial;
+            position: absolute;
+            z-index: 10;
+            background: #303030;
+            color: #fff;
+            white-space: nowrap;
+            padding: 6px 8px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .tip.active {
+            display: block;
+        }
+
+        .tip.top {
+            left: 50%;
+            top: -10px;
+            transform: translate(-50%, -100%);
+        }
+
+        .tip.bottom {
+            left: 50%;
+            top: 100%;
+            transform: translate(-50%, 10px);
+        }
+
+        .tip.left {
+            left: -10px;
+            top: 50%;
+            transform: translate(-100%, -50%);
+        }
+
+        .tip.right {
+            left: 100%;
+            top: 50%;
+            transform: translate(10px, -50%);
+        }
+
+        .tip::before {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            border: 6px solid transparent;
+        }
+
+        .tip.top::before {
+            border-top-color: #303030;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -5%);
+        }
+
+        .tip.bottom::before {
+            border-bottom-color: #303030;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -95%);
+        }
+
+        .tip.left::before {
+            border-left-color: #303030;
+            top: 50%;
+            left: 100%;
+            transform: translate(-5%, -50%);
+        }
+
+        .tip.right::before {
+            border-right-color: #303030;
+            top: 50%;
+            left: 0;
+            transform: translate(-95%, -50%);
+        }</style>
+<script src="/modal.js"></script></head>
+
+<body>
+    <div class="nav-container">
+        <ul class="nav">
+            <li class="nav-item collapse"><a href="/component\collapse.html">collapse</a></li>
+            <li class="nav-item message"><a href="/component\message.html">message</a></li>
+            <li class="nav-item tab"><a href="/component\tab.html">tab</a></li>
+            <li class="nav-item tooltip active"><a href="/component\tooltip.html">tooltip</a></li>
+            <li class="nav-item modal"><a href="/component\modal.html">modal</a></li>
+            <li class="nav-item carousel"><a href="/component\carousel.html">carousel</a></li>
+        </ul>
+    </div>
+    <div class="display">
+        <div class="container">
+            <h2 class="title">Tooltip 文字提示</h2>
+            <div class="panel">
+                <div>
+                    <div class="row1"><button class="btn" data-align="top" data-text="这里是内容">上</button></div>
+                    <div class="row2">
+                        <button class="btn col1" data-align="left" data-text="这里是内容">左</button>
+                        <button class="btn col2" data-align="right" data-text="这里是内容">右</button></div>
+                    <div class="row3"><button class="btn" data-align="bottom" data-text="这里是内容">下</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Tooltip =
+/*#__PURE__*/
+function () {
+  function Tooltip($btn) {
+    _classCallCheck(this, Tooltip);
+
+    this.$btn = $btn;
+    this.$btn.tooltip = this;
+    this.align = $btn.dataset.align;
+    this.text = $btn.dataset.text;
+    this.render();
+    this.$btn.show = this.show.bind(this);
+    this.$btn.hide = this.hide.bind(this);
+    this.show();
+  }
+
+  _createClass(Tooltip, [{
+    key: "render",
+    value: function render() {
+      this.$div = document.createElement('div');
+      this.$div.innerText = this.text;
+      this.$div.classList.add(this.align, 'tip');
+      this.$btn.appendChild(this.$div);
+    }
+  }, {
+    key: "show",
+    value: function show() {
+      this.$div.classList.add('active');
+    }
+  }, {
+    key: "hide",
+    value: function hide() {
+      this.$div.classList.remove('active');
+    }
+  }]);
+
+  return Tooltip;
+}();
+
+document.querySelectorAll('.btn').forEach(function (btn) {
+  btn.addEventListener('mouseenter', function () {
+    if (btn.tooltip) {
+      btn.show();
+    } else {
+      new Tooltip(btn);
+    }
+  });
+  btn.addEventListener('mouseleave', function () {
+    btn.hide();
+  });
+});</script>
+
+</html>

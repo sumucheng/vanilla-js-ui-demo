@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.e308ff8e.css">
+    <style>.background {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            position: fixed;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .background.active {
+            display: block;
+        }
+
+        .dialog {
+            position: fixed;
+            top: 100px;
+            width: 500px;
+            border: 1px solid #eee;
+            left: 50%;
+            transform: translate(-50%);
+            background-color: white;
+            border-radius: 4px;
+            display: none;
+            z-index: 15;
+            opacity: 0;
+            transition: all 0.2s;
+        }
+
+        .dialog.active {
+            display: block;
+        }
+
+        .dialog.active.show {
+            opacity: 1;
+        }
+
+        .dialog-header {
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+
+        .dialog-header>.header-text {
+            padding: 15px;
+        }
+
+        .dialog-header>.close {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            font-size: 20px;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .dialog-main {
+            padding: 15px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .dialog-footer {
+            border-top: 1px solid #eee;
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .dialog-footer>button {
+            margin-left: 10px;
+        }</style>
+<script src="/carousel.js"></script></head>
+
+<body>
+    <div class="background"></div>
+    <div class="nav-container">
+        <ul class="nav">
+            <li class="nav-item collapse"><a href="/component\collapse.html">collapse</a></li>
+            <li class="nav-item message"><a href="/component\message.html">message</a></li>
+            <li class="nav-item tab"><a href="/component\tab.html">tab</a></li>
+            <li class="nav-item tooltip"><a href="/component\tooltip.html">tooltip</a></li>
+            <li class="nav-item modal active"><a href="/component\modal.html">modal</a></li>
+            <li class="nav-item carousel"><a href="/component\carousel.html">carousel</a></li>
+        </ul>
+    </div>
+
+    <div class="display">
+        <div class="container">
+            <h2 class="title">Modal 对话框</h2>
+            <div class="panel">
+                <button class="modal-open">打开对话框</button>
+            </div>
+        </div>
+
+        <div class="dialog">
+            <div class="dialog-header">
+                <h3 class="header-text">提示</h3>
+                <p class="close">×</p>
+            </div>
+            <div class="dialog-main">一些内容</div>
+            <div class="dialog-footer">
+                <button class="cancel">取消</button>
+                <button class="ok">确定</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Modal =
+/*#__PURE__*/
+function () {
+  function Modal($root, options) {
+    _classCallCheck(this, Modal);
+
+    this.$root = $root;
+
+    this.handleClose = options.handleClose || function () {};
+
+    this.handleCancel = options.handleCancel || function () {};
+
+    this.handleOk = options.handleOk || function () {};
+
+    this.bind();
+  }
+
+  _createClass(Modal, [{
+    key: "bind",
+    value: function bind() {
+      var _this = this;
+
+      this.$root.querySelector('.close').addEventListener('click', function () {
+        _this.hide();
+
+        _this.handleClose();
+      });
+      this.$root.querySelector('.cancel').addEventListener('click', function () {
+        _this.hide();
+
+        _this.handleCancel();
+      });
+      this.$root.querySelector('.ok').addEventListener('click', function () {
+        _this.hide();
+
+        _this.handleOk();
+      });
+    }
+  }, {
+    key: "hide",
+    value: function hide() {
+      var _this2 = this;
+
+      this.$root.classList.remove('show');
+      setTimeout(function () {
+        _this2.$root.classList.remove('active');
+      }, 200);
+      background.classList.remove('active');
+    }
+  }]);
+
+  return Modal;
+}();
+
+var dialog = document.querySelector('.dialog');
+var background = document.querySelector('.background');
+var modal = new Modal(dialog, {
+  handleCancel: handleCancel,
+  handleOk: handleOk
+});
+document.querySelector('.modal-open').addEventListener('click', function () {
+  dialog.classList.add('active');
+  background.classList.add('active');
+  setTimeout(function () {
+    dialog.classList.add('show');
+  }, 0);
+});
+
+function handleCancel() {
+  console.log('cancel');
+}
+
+function handleOk() {
+  console.log('ok');
+}</script>
+
+</html>

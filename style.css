@@ -58,6 +58,9 @@ ul,ol{
     padding-top: 1em;
     cursor: pointer;
 }
+.nav-item > a{
+    display: block;
+}
 .nav-item:hover{
     color:#1890ff;
 }

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.e308ff8e.css">
+    <style>.slick-wrapper {
+            position: relative;
+        }
+
+        .slick-list>.slick-slide {
+            height: 200px;
+            display: flex;
+        }
+
+        .slick-slide>div {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(54, 77, 121);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            opacity: 0;
+            transition: all .5s;
+        }
+
+        .slick-slide>div.active {
+            opacity: 1;
+        }
+
+        .slick-dots {
+            position: absolute;
+            bottom: 8px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .slick-dots button {
+            width: 18px;
+            height: 3px;
+            margin: 3px;
+            padding: 0;
+            border: 0;
+            line-height: 0;
+            background: #fff;
+            border-radius: 1px;
+            opacity: 0.3;
+            outline: none;
+            transition: all 0.3s;
+            font-size: 0;
+        }
+
+        .slick-dots button:hover {
+            opacity: 1;
+        }
+
+        .slick-dots button.active {
+            width: 24px;
+            opacity: 1;
+        }</style>
+</head>
+
+<body>
+    <div class="nav-container">
+        <ul class="nav">
+            <li class="nav-item collapse"><a href="/component\collapse.html">collapse</a></li>
+            <li class="nav-item message"><a href="/component\message.html">message</a></li>
+            <li class="nav-item tab"><a href="/component\tab.html">tab</a></li>
+            <li class="nav-item tooltip"><a href="/component\tooltip.html">tooltip</a></li>
+            <li class="nav-item modal"><a href="/component\modal.html">modal</a></li>
+            <li class="nav-item carousel active"><a href="/component\modal.html">carousel</a></li>
+        </ul>
+    </div>
+    <div class="display">
+        <div class="container">
+            <h2 class="title">Carousel 走马灯</h2>
+            <div class="panel">
+                <div class="slick-wrapper">
+                    <div class="slick-list">
+                        <div class="slick-slide">
+                            <div data-index="1" class="active">
+                                <h2>1</h2>
+                            </div>
+                            <div data-index="2">
+                                <h2>2</h2>
+                            </div>
+                            <div data-index="3">
+                                <h2>3</h2>
+                            </div>
+                            <div data-index="4">
+                                <h2>4</h2>
+                            </div>
+
+                        </div>
+                    </div>
+                    <ul class="slick-dots">
+                        <li><button class="active">1</button></li>
+                        <li><button>2</button></li>
+                        <li><button>3</button></li>
+                        <li><button>4</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>var $slickSlides = document.querySelectorAll('.slick-slide>div');
+var $slickDots = document.querySelectorAll('.slick-dots button');
+document.querySelector('.slick-dots').addEventListener('click', function (e) {
+  if (e.target.tagName === 'BUTTON') {
+    $slickDots.forEach(function (i) {
+      return i.classList.remove('active');
+    });
+    e.target.classList.add('active');
+    var index = e.target.innerText;
+    $slickSlides.forEach(function (i) {
+      return i.classList.remove('active');
+    });
+    document.querySelector("[data-index=\"".concat(index, "\"]")).classList.add('active');
+  }
+});</script>
+
+</html>

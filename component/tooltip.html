@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .panel {
+            display: flex;
+            justify-content: center;
+        }
+
+        .row1,
+        .row3,
+        .row2>.col2 {
+            margin-left: 50px;
+        }
+
+        .row1,
+        .row2 {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            position: relative;
+        }
+
+        .tip {
+            cursor: initial;
+            position: absolute;
+            z-index: 10;
+            background: #303030;
+            color: #fff;
+            white-space: nowrap;
+            padding: 6px 8px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .tip.active {
+            display: block;
+        }
+
+        .tip.top {
+            left: 50%;
+            top: -10px;
+            transform: translate(-50%, -100%);
+        }
+
+        .tip.bottom {
+            left: 50%;
+            top: 100%;
+            transform: translate(-50%, 10px);
+        }
+
+        .tip.left {
+            left: -10px;
+            top: 50%;
+            transform: translate(-100%, -50%);
+        }
+
+        .tip.right {
+            left: 100%;
+            top: 50%;
+            transform: translate(10px, -50%);
+        }
+
+        .tip::before {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            border: 6px solid transparent;
+        }
+
+        .tip.top::before {
+            border-top-color: #303030;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -5%);
+        }
+
+        .tip.bottom::before {
+            border-bottom-color: #303030;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -95%);
+        }
+
+        .tip.left::before {
+            border-left-color: #303030;
+            top: 50%;
+            left: 100%;
+            transform: translate(-5%, -50%);
+        }
+
+        .tip.right::before {
+            border-right-color: #303030;
+            top: 50%;
+            left: 0;
+            transform: translate(-95%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-container">
+        <ul class="nav">
+            <li class="nav-item collapse"><a href="./collapse.html">collapse</a></li>
+            <li class="nav-item message"><a href="./message.html">message</a></li>
+            <li class="nav-item tab"><a href="./tab.html">tab</a></li>
+            <li class="nav-item tooltip active"><a href="./tooltip.html">tooltip</a></li>
+            <li class="nav-item modal"><a href="./modal.html">modal</a></li>
+            <li class="nav-item carousel"><a href="./carousel.html">carousel</a></li>
+        </ul>
+    </div>
+    <div class="display">
+        <div class="container">
+            <h2 class="title">Tooltip 文字提示</h2>
+            <div class="panel">
+                <div>
+                    <div class="row1"><button class='btn' data-align='top' data-text='这里是内容'>上</button></div>
+                    <div class="row2">
+                        <button class='btn col1' data-align='left' data-text='这里是内容'>左</button>
+                        <button class='btn col2' data-align='right' data-text='这里是内容'>右</button></div>
+                    <div class="row3"><button class='btn' data-align='bottom' data-text='这里是内容'>下</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    class Tooltip {
+        constructor($btn) {
+            this.$btn = $btn
+            this.$btn.tooltip = this
+            this.align = $btn.dataset.align
+            this.text = $btn.dataset.text
+            this.render()
+            this.$btn.show = this.show.bind(this)
+            this.$btn.hide = this.hide.bind(this)
+            this.show()
+        }
+        render() {
+            this.$div = document.createElement('div')
+            this.$div.innerText = this.text
+            this.$div.classList.add(this.align, 'tip')
+            this.$btn.appendChild(this.$div)
+        }
+        show() {
+            this.$div.classList.add('active')
+        }
+        hide() {
+            this.$div.classList.remove('active')
+        }
+    }
+
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+            if (btn.tooltip) {
+                btn.show()
+            }
+            else {
+                new Tooltip(btn)
+            }
+        })
+        btn.addEventListener('mouseleave', () => {
+            btn.hide()
+        })
+    }
+    )
+</script>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.e308ff8e.css">
+    <style>.tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab-title {
+            margin-right: 20px;
+            cursor: pointer;
+            padding-bottom: 4px;
+        }
+
+        .tab-title.active {
+            color: #409eff;
+            border-bottom: 2px solid #409eff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }</style>
+<script src="/tooltip.js"></script></head>
+
+<body>
+    <div class="nav-container">
+        <ul class="nav">
+            <li class="nav-item collapse"><a href="/component\collapse.html">collapse</a></li>
+            <li class="nav-item message"><a href="/component\message.html">message</a></li>
+            <li class="nav-item tab active"><a href="/component\tab.html">tab</a></li>
+            <li class="nav-item tooltip"><a href="/component\tooltip.html">tooltip</a></li>
+            <li class="nav-item modal"><a href="/component\modal.html">modal</a></li>
+            <li class="nav-item carousel"><a href="/component\carousel.html">carousel</a></li>
+        </ul>
+    </div>
+    <div class="display">
+        <div class="container">
+            <h2 class="title">Tab 选项卡</h2>
+            <div class="panel">
+                <div class="tabs">
+                    <div class="tab-title active">选项一</div>
+                    <div class="tab-title">选项二</div>
+                    <div class="tab-title">选项三</div>
+                </div>
+                <div class="contents">
+                    <div class="tab-content active">选项一的内容</div>
+                    <div class="tab-content">选项二的内容</div>
+                    <div class="tab-content">选项三的内容</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Tab =
+/*#__PURE__*/
+function () {
+  function Tab($container) {
+    _classCallCheck(this, Tab);
+
+    this.$tabs = $container.querySelector('.tabs');
+    this.$tabTitles = $container.querySelectorAll('.tab-title');
+    this.$tabContents = $container.querySelectorAll('.tab-content');
+    this.bind();
+  }
+
+  _createClass(Tab, [{
+    key: "bind",
+    value: function bind() {
+      var _this = this;
+
+      this.$tabs.addEventListener('click', function (e) {
+        if (_toConsumableArray(e.target.classList).indexOf('tab-title') >= 0) {
+          _this.$tabTitles.forEach(function (tab) {
+            return tab.classList.remove('active');
+          });
+
+          e.target.classList.add('active');
+
+          _this.$tabContents.forEach(function (content) {
+            return content.classList.remove('active');
+          });
+
+          var index = _toConsumableArray(_this.$tabTitles).indexOf(e.target);
+
+          _this.$tabContents[index].classList.add('active');
+        }
+      });
+    }
+  }]);
+
+  return Tab;
+}();
+
+document.querySelectorAll('.container').forEach(function (container) {
+  return new Tab(container);
+});</script>
+
+</html>
